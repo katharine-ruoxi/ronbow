@@ -4,7 +4,7 @@ import {
   DollarOutlined, FireOutlined, AntDesignOutlined, CommentOutlined, SettingOutlined, 
   UserOutlined, ToolOutlined, BookOutlined, CustomerServiceOutlined, ExportOutlined, 
   VideoCameraOutlined, PlusSquareOutlined, ReadOutlined, CheckCircleOutlined, 
-  FundProjectionScreenOutlined, BulbOutlined, SolutionOutlined, FormOutlined, 
+  FundProjectionScreenOutlined, BulbOutlined, SolutionOutlined, FormOutlined, TableOutlined
 } from '@ant-design/icons';
 import { Dropdown, Layout, Menu, theme, Avatar, Image, Input } from 'antd';
 import ProjectProfile from '../projectlist/projectprofile/projectprofile';
@@ -16,7 +16,7 @@ import CustomerProfile from '../customerprofile/customerprofile';
 import Chat from '../chat/chat';
 import Zoom from '../zoom/zoom';
 import AddShortcut from '../addshortcut/addshortcut';
-import KnowledgeBase from '../knowledgebase/knowledgebase';
+import KnowledgeBase from '../Resource/Resources';
 import Dashboard from '../dashboard/dashboard';
 // import Commission from '../humanresource/commission/commission';
 import InspirationSpace from '../inspiration/inspiration';
@@ -40,7 +40,8 @@ const defaultShortcuts = [
   {key: '3', icon: <CommentOutlined/>, label: 'Chat'},
   {key: '4', icon: <VideoCameraOutlined />, label: 'Zoom'},
   {key: '5', icon: <ScheduleOutlined />, label: 'Calendar'}, 
-  {key: '6', icon: <PlusSquareOutlined />, label: 'Add Shortcut', iconStyle: {bottom: '10%', position: 'absolute', }}, 
+  {key: '6', icon: <TableOutlined />, label: 'Clickup Form'}, 
+  {key: '7', icon: <PlusSquareOutlined />, label: 'Add Shortcut', iconStyle: {bottom: '10%', position: 'absolute', }}, 
 
 ];
 
@@ -50,10 +51,11 @@ const allShortcuts = [
   {key: '3', icon: <CommentOutlined/>, label: 'Chat'},
   {key: '4', icon: <VideoCameraOutlined />, label: 'Zoom'},
   {key: '5', icon: <ScheduleOutlined />, label: 'Calendar'}, 
-  {key: '6', icon: <PlusSquareOutlined />, label: 'Add Shortcut', iconStyle: {bottom: '10%', position: 'absolute', }}, 
-  {key: '7', icon: <ExportOutlined />, label: 'Export'}, 
-  {key: '8', icon: <ToolOutlined />, label: 'Tool'}, 
-  {key: '9', icon: <SettingOutlined />, label: 'Settings'}, 
+  {key: '6', icon: <TableOutlined />, label: 'Clickup Form'}, 
+  {key: '7', icon: <PlusSquareOutlined />, label: 'Add Shortcut', iconStyle: {bottom: '10%', position: 'absolute', }}, 
+  {key: '8', icon: <ExportOutlined />, label: 'Export'}, 
+  {key: '9', icon: <ToolOutlined />, label: 'Tool'}, 
+  {key: '10', icon: <SettingOutlined />, label: 'Settings'}, 
 ];
 
 
@@ -100,9 +102,9 @@ const Homepage = () => {
   
   const handleClickNavigation = () => {
     switch(showContent) {
-      case 'project-profile':
+      case 'project-list':
         return <ProjectList />;
-      case 'knowledge-base':
+      case 'resources':
         return <KnowledgeBase />;
       case 'dashboard':
         return <Dashboard />
@@ -127,14 +129,15 @@ const Homepage = () => {
       '3': 'https://www.zoom.com/en/products/team-chat/',
       '4': 'https://zoom.us/meeting',
       '5': 'https://calendar.google.com/calendar/',
-      '6': '/add-shortcut',
+      '6': 'https://app.clickup.com/10643463/v/fm/a4u07-7291',
+      '7': '/add-shortcut',
     };
     
     if (key === 'logo') {
       setShowContent(''); // Clear the current content
       setSelectedKey(null); // Clear all selections
       navigate('/'); // Navigate to the homepage
-    } else if (key === '2' || key === '5' || key === '3' || key === '4') {
+    } else if (key === '2' || key === '5' || key === '3' || key === '4' || key === '6') {
       window.open(paths[key], '_blank');
     } else if (key === '1') {
       navigate(paths[key]);
@@ -222,13 +225,13 @@ const Homepage = () => {
             <Menu.Item 
               key="2" 
               icon={<FundProjectionScreenOutlined />} 
-              onClick={() => setShowContent('project-profile')} 
+              onClick={() => setShowContent('project-list')} 
               style={{ fontWeight: '200',  color: 'black', }}>
               <Link to="/">Projects</Link>
             </Menu.Item>
 
-            <Menu.Item key='3' icon={<ReadOutlined />} onClick={() => setShowContent('knowledge-base')} style={{ fontWeight: '200',  color: 'black', }}>
-              <Link to="/">Knowledge Base</Link>
+            <Menu.Item key='3' icon={<ReadOutlined />} onClick={() => setShowContent('resources')} style={{ fontWeight: '200',  color: 'black', }}>
+              <Link to="/">Resources</Link>
             </Menu.Item>
 
             <Menu.Item 
@@ -237,7 +240,7 @@ const Homepage = () => {
               onClick={() => setShowContent('inspiration-space')}
               style={{ fontWeight: '200', color: 'black', }}
             >
-              <Link to="/">Inspiration Space</Link>
+              <Link to="/">Inspiration</Link>
             </Menu.Item>
 
             <Menu.Item 
@@ -304,6 +307,7 @@ const Homepage = () => {
             <Route path="/chat" element={ <Chat /> }></Route>
             <Route path="/zoom" element={ <Zoom /> }></Route>
             <Route path="https://calendar.google.com/calendar/"></Route>
+            <Route path="https://app.clickup.com/10643463/v/fm/a4u07-7291"></Route>
             <Route path="/add-shortcut" element={ <AddShortcut /> }></Route>
 
           </Routes>

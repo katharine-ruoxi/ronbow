@@ -19,7 +19,7 @@ ReactDOM.render(
       <LayoutComponent />
       <Routes>
         {/* Add Components you want to route */}
-        <Route path="/" element={<Homepage />} />
+        {/* <Route path="/" element={<Homepage />} /> */}
         <Route path="/project-list" element={<ProjectList /> } />
         <Route path="/project-list/:id" element={<ProjectProfile />} />
         <Route path="/customer-profile/:id" element={<CustomerProfile /> } />

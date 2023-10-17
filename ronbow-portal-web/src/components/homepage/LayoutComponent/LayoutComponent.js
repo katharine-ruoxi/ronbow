@@ -188,7 +188,7 @@ const LayoutComponent = () => {
                     icon={<FundProjectionScreenOutlined />} 
                     onClick={() => setShowContent('project-list')} 
                     style={{ fontWeight: '200',  color: 'black', }}>
-                    <Link to="/project-lsit">Projects</Link>
+                    <Link to="/project-list">Projects</Link>
                     </Menu.Item>
 
                     <Menu.Item key='3' icon={<ReadOutlined />} onClick={() => setShowContent('resources')} style={{ fontWeight: '200',  color: 'black', }}>

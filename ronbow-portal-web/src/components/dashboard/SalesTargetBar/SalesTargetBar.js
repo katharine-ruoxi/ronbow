@@ -18,28 +18,16 @@ const CustomProgressBar = ({ sales, target, elapsedDays, totalDays }) => {
           />
           <div
             className="elapsed-time-marker"
-            style={{ left: `calc(${timePercentage}% - 1px)` }}
+            style={{ left: `calc(${timePercentage}% - 2px)` }}
           />
         </Col>
       </Row>
       <Row justify="space-between" align="bottom">
         <Col>
-          <span className="label">
-            $
-            {Intl.NumberFormat("en-IN", { maximumSignificantDigits: 1 }).format(
-              sales,
-            )}{" "}
-            Cashed In
-          </span>
+          <span className="label">${Intl.NumberFormat('en-IN', { maximumSignificantDigits: 1 }).format(sales)} Cashed In</span>
         </Col>
         <Col>
-          <span className="label">
-            $
-            {Intl.NumberFormat("en-IN", { maximumSignificantDigits: 1 }).format(
-              target,
-            )}{" "}
-            Target
-          </span>
+          <span className="label">${Intl.NumberFormat('en-IN', { maximumSignificantDigits: 1 }).format(target)} Target</span>
         </Col>
       </Row>
     </div>

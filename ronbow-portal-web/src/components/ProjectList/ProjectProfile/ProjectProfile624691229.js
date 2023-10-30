@@ -1,6 +1,5 @@
 import React from 'react';
 import { Collapse, Divider, Button, ConfigProvider, Menu, Dropdown, Image, QRCode, } from 'antd';
-import './ProjectProfile.css';
 import {
   ExportOutlined, FilterOutlined, SearchOutlined, DownloadOutlined,
   ToolOutlined, PrinterOutlined, MailOutlined, UserOutlined,
@@ -8,6 +7,9 @@ import {
 import Progress from './Progress/Progress';
 import Zoom from '../../Zoom/Zoom';
 import Calculator from './Calculator/Calculator';
+import ProgressTest from './Progress/Progress-Test';
+import ProgressCollapsed from './Progress/ProgressCollapsed';
+import ModeIcon from '@mui/icons-material/Mode';
 
 
 
@@ -123,8 +125,8 @@ const menu = (
     <Menu.Item key="3" icon={<MailOutlined />} onClick={handleEmailUs}>
       Email Customer
     </Menu.Item>
-    <Menu.Item key="4" icon={<UserOutlined />} onClick={handleUserSignon}>
-      Sign On
+    <Menu.Item key="4" icon={<ModeIcon />} onClick={handleUserSignon}>
+      Sign
     </Menu.Item>
 
   </Menu>
@@ -134,8 +136,19 @@ const menu = (
 const ProjectProfile = () => (
 
   <div style={{ width: '100%', overflow: 'hidden', }}>
-    <div style={{ float: 'left', width: '20%', marginLeft: '20px', }}>
+    {/* Old */}
+    {/* <div style={{ float: 'left', width: '20%', marginLeft: '20px', }}>
       <Progress />
+    </div> */}
+
+    {/* Current progress bar */}
+    {/* <div style={{ float: 'left', width: '20%', marginLeft: '20px', fontFamily: 'Roboto, sans-serif', }}>
+      <ProgressTest />
+    </div> */}
+
+    {/* Progress bar collapsed: */}
+    <div style={{ float: 'left', width: '20%', marginLeft: '20px', fontFamily: 'Roboto, sans-serif', }}>
+      <ProgressCollapsed />
     </div>
 
 
@@ -241,7 +254,7 @@ const ProjectProfile = () => (
           lineHeight: '30px', letterSpacing: '0.02em', textAlign: 'left',
           backgroundColor: 'white', paddingTop: '20px', paddingBottom: '10px',
         }}>
-        Signature</span>    <br />
+          Signature</span>    <br />
 
         <div style={{ textAlign: 'center', }}>
           <Dropdown overlay={menu} trigger={['click']}>
@@ -258,14 +271,14 @@ const ProjectProfile = () => (
 
 
       <Divider />
-      
+
       <div>
         <span style={{
           fontFamily: 'Roboto, sans-serif', fontSize: '18px', fontWeight: '300',
           lineHeight: '30px', letterSpacing: '0.02em', textAlign: 'left',
           backgroundColor: 'white', paddingTop: '20px', paddingBottom: '10px',
         }}>
-        Payment</span>        
+          Payment</span>
         <div style={{ textAlign: 'center', }}>
           <QRCode
             errorLevel="H"
@@ -276,7 +289,7 @@ const ProjectProfile = () => (
             Pay Now
           </Button>
           <Button style={{ marginRight: '20px', }}>
-            Pay with Link
+            Pay At Home
           </Button>
           <Button style={{ margin: 'auto', }}>
             Finance

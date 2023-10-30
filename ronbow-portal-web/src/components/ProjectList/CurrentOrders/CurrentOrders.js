@@ -8,9 +8,6 @@ import {
 } from '@ant-design/pro-components';
 import { Button, Form, Input, Space, Tag, Divider, ConfigProvider } from 'antd';
 import { Link, Routes, Route } from 'react-router-dom';
-import AddProject from './AddProject/AddProject';
-import CurrentOrders from './CurrentOrders/CurrentOrders.js';
-import ArchivedOrders from './ArchivedOrders/ArchivedOrders';
 
 
 
@@ -95,7 +92,6 @@ const defaultData = [
     tradePro: 'trade pro 1',
     designer: 'Wendy',
     ETA: 'TBD',
-    view_desing: <a href="https://designstudio.ronbow.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#5d6465', textDecoration: 'underline', }}>View Design</a>,
     address: '7150 Patterson Pass Rd # F, Livermore, CA 94550',
     created_at: '2023/10/10',
   },
@@ -124,7 +120,6 @@ const defaultData = [
     tradePro: 'trade pro 2',
     designer: 'Wendy',
     ETA: '9/16',
-    view_desing: <a href="https://designstudio.ronbow.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#5d6465', textDecoration: 'underline', }}>View Design</a>,
     address: '680 8th St Suite 166, San Francisco, CA 94103',
     created_at: '2023/9/5',
   },
@@ -153,7 +148,6 @@ const defaultData = [
     tradePro: 'trade pro 3',
     designer: 'Wendy',
     ETA: '8/16',
-    view_desing: <a href="https://designstudio.ronbow.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#5d6465', textDecoration: 'underline', }}>View Design</a>,
     address: '19479 Stevens Creek Blvd #110, Cupertino, CA 95014',
     created_at: '2023/8/5',
   },
@@ -242,11 +236,6 @@ const columns = [
     width: '15%',
   },
   {
-    title: 'View Design',
-    dataIndex: 'view_desing',
-    width: '15%',
-  },
-  {
     title: 'Address',
     dataIndex: 'address',
     width: '23%',
@@ -278,7 +267,7 @@ const EditableTable = () => {
             x: 960,
           }}
           actionRef={actionRef}
-          headerTitle="Project List"
+          headerTitle="Current Orders"
           maxLength={5}
           recordCreatorProps={false}
           columns={columns}
@@ -301,16 +290,6 @@ const EditableTable = () => {
         />
 
         <Divider />
-        
-        <AddProject />
-
-        <Divider />
-
-        <CurrentOrders />
-
-        <Divider />
-
-        <ArchivedOrders />
         
       </div>
     </ConfigProvider>

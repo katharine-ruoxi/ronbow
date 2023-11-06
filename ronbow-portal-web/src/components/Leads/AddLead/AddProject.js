@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
-import ProjectForm from './ProjectForm/ProjectForm';
+import LeadForm from './LeadForm/LeadForm';
 
 
 
@@ -23,10 +23,10 @@ const App = () => {
   return (
     <>
       <Button type="primary" onClick={() => setModalOpen(true)}>
-        Add a Project
+        Add a Lead
       </Button>
       <Modal
-        title="Add a Project"
+        title="Add a Lead"
         centered
         open={modalOpen}
         onOk={() => setModalOpen(false)}
@@ -36,12 +36,12 @@ const App = () => {
           //   Cancel
           // </Button>,
           <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
-            Add
+            Add & Invite
           </Button>,
         ]}
       >
 
-        <ProjectForm />
+        <LeadForm />
       
       </Modal>
     </>

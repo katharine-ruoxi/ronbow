@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import {
+  AutoComplete,
   Button,
+  Cascader,
+  Checkbox,
+  Col,
   Form,
   Input,
+  InputNumber,
+  Row,
   Select,
+  TimePicker
 } from 'antd';
+
+
+
 
 const formItemLayout = {
   labelCol: {
@@ -42,43 +52,36 @@ const App = () => {
     console.log('Received values of form: ', values);
   };
 
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-
-
+  
   return (
     <Form
       {...formItemLayout}
       form={form}
       name="register"
       onFinish={onFinish}
-      initialValues={{
-        residence: ['zhejiang', 'hangzhou', 'xihu'],
-        prefix: '86',
-      }}
+
       style={{
         maxWidth: 600,
       }}
       scrollToFirstError
     >
+      
 
       <Form.Item
-        name="description"
-        label="Description"
-        rules={[
-          {
-            required: true,
-            message: 'Please input Description',
-          },
-        ]}
+        name="feedback"
+        label="Feedback"
+        required={true}
       >
-        <Input.TextArea showCount maxLength={100} />
+        <Input.TextArea showCount maxLength={300} />
       </Form.Item>
 
-
-
+      
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
-          Register
+          Leave Feedback
+        </Button>
+        <Button type="secondary" htmlType="submit">
+          Cancel
         </Button>
       </Form.Item>
     </Form>

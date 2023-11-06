@@ -8,7 +8,7 @@ import {
 } from '@ant-design/pro-components';
 import { Button, Form, Input, Space, Tag, Divider, ConfigProvider } from 'antd';
 import { Link, Routes, Route } from 'react-router-dom';
-import AddProject from './AddProject/AddProject';
+// import AddProject from './AddProject/AddProject';
 import CurrentOrders from './CurrentOrders/CurrentOrders.js';
 import ArchivedOrders from './ArchivedOrders/ArchivedOrders';
 
@@ -278,7 +278,7 @@ const EditableTable = () => {
             x: 960,
           }}
           actionRef={actionRef}
-          headerTitle="Project List"
+          headerTitle="Current Pipeline"
           maxLength={5}
           recordCreatorProps={false}
           columns={columns}
@@ -300,15 +300,13 @@ const EditableTable = () => {
           }}
         />
 
-        <Divider />
         
-        <AddProject />
+        {/* <AddProject /> */}
 
-        <Divider />
 
-        <CurrentOrders />
+        {/* <CurrentOrders />
 
-        <Divider />
+        <Divider /> */}
 
         <ArchivedOrders />
         

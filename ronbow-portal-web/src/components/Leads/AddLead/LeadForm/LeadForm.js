@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Checkbox, Form, Input } from 'antd';
-
 
 
 
 const onFinish = (values) => {
     console.log('Success:', values);
 };
+
 const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
 };
@@ -32,13 +33,26 @@ const App = () => {
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
-            <Form.Item
-                label="Username"
-                name="username"
+            {/* <Form.Item
+                label="Lead Name"
+                name="lead_name"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your username!',
+                        message: 'Please input your lead name!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item> */}
+
+            <Form.Item
+                label="Customer Name"
+                name="customer_name"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your customer name!',
                     },
                 ]}
             >
@@ -46,16 +60,16 @@ const App = () => {
             </Form.Item>
 
             <Form.Item
-                label="Password"
-                name="password"
+                label="Email"
+                name="email"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your password!',
+                        message: 'Please input your email',
                     },
                 ]}
             >
-                <Input.Password />
+                <Input />
             </Form.Item>
 
             <Form.Item
@@ -84,27 +98,14 @@ const App = () => {
                 <Input />
             </Form.Item>
 
-            {/* <Form.Item
-                name="remember"
-                valuePropName="checked"
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
+            <Form.Item
+                label="Copy Link"
+                name="copy_link"
             >
-                <Checkbox>Remember me</Checkbox>
-            </Form.Item> */}
+                <span><Link href="www.google.com" target="_blank">www.google.com</Link></span>
+            </Form.Item>
 
-            {/* <Form.Item
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
-            >
-                <Button type="primary" htmlType="submit">
-                    Submit
-                </Button>
-            </Form.Item> */}
+
         </Form>
     );
 }

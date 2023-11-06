@@ -1,5 +1,11 @@
 import React from 'react';
-import { Collapse, Divider, Button, ConfigProvider, Menu, Dropdown, Image, QRCode, } from 'antd';
+import { Link } from 'react-router-dom';
+import {
+  Collapse, Divider, Button, ConfigProvider, Menu,
+  Dropdown, Image, QRCode, Input, Switch, Form,
+  List, Typography
+} from 'antd';
+import './ProjectProfile624748504.css';
 import {
   ExportOutlined, FilterOutlined, SearchOutlined, DownloadOutlined,
   ToolOutlined, PrinterOutlined, MailOutlined, UserOutlined,
@@ -10,6 +16,7 @@ import Calculator from './Calculator/Calculator';
 import ProgressTest from './Progress/Progress-Test';
 import ProgressCollapsed from './Progress/ProgressCollapsed';
 import ModeIcon from '@mui/icons-material/Mode';
+import FolderSharedIcon from '@mui/icons-material/FolderShared';
 
 
 
@@ -20,6 +27,13 @@ const text = `
 `;
 
 const { Panel } = Collapse;
+const { TextArea } = Input;
+
+
+const data = [
+  "Your Wet Bar at San Mateo with L-shape style is being designed by Wendy from 2023/9/5.",
+];
+
 
 
 const items = [
@@ -59,10 +73,47 @@ const items = [
   {
     key: '4',
     label: 'DOCUMENTS',
-    children: <div>
-      <Zoom />
-    </div>,
-    headerStyle: { fontFamily: 'Roboto, sans-serif', fontSize: '12px', fontWeight: '400', lineHeight: '14px', letterSpacing: '0.02em', textAlign: 'left', },
+    children: (
+      <div>
+        {[
+          { label: 'Others', link: 'https://example.com/others' },
+          { label: 'Invoices', link: 'https://example.com/invoices' },
+          { label: 'Item Lists', link: 'https://example.com/item-lists' },
+          { label: 'Final Document', link: 'https://example.com/final-document' },
+          { label: 'Appliances', link: 'https://example.com/appliances' },
+          { label: 'Drawings', link: 'https://example.com/drawings' },
+          { label: 'Design & Deposit Agreement', link: 'https://example.com/design-deposit-agreement' },
+        ].map((doc, index) => (
+          <a
+            href={doc.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none', color: 'inherit' }}
+            key={index}
+          >
+            <p style={{
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
+              verticalAlign: 'middle',
+              margin: 0,
+            }}>
+              <FolderSharedIcon style={{ color: '#5D6465', marginRight: '8px' }} />
+              {doc.label}
+            </p>
+          </a>
+        ))}
+        <Zoom />
+      </div>
+    ),
+    headerStyle: {
+      fontFamily: 'Roboto, sans-serif',
+      fontSize: '12px',
+      fontWeight: '400',
+      lineHeight: '14px',
+      letterSpacing: '0.02em',
+      textAlign: 'left',
+    },
   },
   {
     key: '5',
@@ -80,14 +131,28 @@ const items = [
   {
     key: '7',
     label: 'MEETING NOTES',
-    children: <div><img src="https://cdn.ronbow.com/images/video-poster.jpg" alt="Description" className='responsive-image' /></div>,
+    children: <div style={{ textAlign: 'center', }}>
+      <TextArea rows={4} />
+      <Button style={{ backgroundColor: '#5D6465', color: '#F0ECEC', marginTop: '10px', }}>Save</Button>
+    </div>,
     headerStyle: { fontFamily: 'Roboto, sans-serif', fontSize: '12px', fontWeight: '400', lineHeight: '14px', letterSpacing: '0.02em', textAlign: 'left', },
   },
   {
     key: '8',
     label: 'ALL PROJECTS',
     children: <div>
-      <Zoom />
+      <List
+        header={<div style={{ fontWeight: '400', }}>All Your Projects:</div>}
+        // footer={<div>Footer</div>}
+        bordered
+        dataSource={data}
+        renderItem={(item) => (
+          <List.Item>
+            <Typography.Text mark></Typography.Text> {item}
+            <Link to='https://designstudio.ronbow.com/' target="_blank" rel="noreferrer">  Check it Out! <ExportOutlined /></Link>
+          </List.Item>
+        )}
+      />
     </div>,
     headerStyle: { fontFamily: 'Roboto, sans-serif', fontSize: '12px', fontWeight: '400', lineHeight: '14px', letterSpacing: '0.02em', textAlign: 'left', },
   },
@@ -224,13 +289,20 @@ const ProjectProfile = () => (
       <div style={{ textAlign: 'center', }}>
         <Button
           size='large'
-          icon={<ToolOutlined />}
           onClick={() => handleDesignButton()}
           style={{ backgroundColor: '#5D6465', color: '#F0ECEC', marginRight: '10px', }}
         >
           Design Now!
         </Button>
 
+        <Button
+          size='large'
+          onClick={() => handleDesignButton()}
+          style={{ marginRight: '10px', }}
+          disabled
+        >
+          Generate Proposal!
+        </Button>
 
       </div>
 
@@ -289,14 +361,69 @@ const ProjectProfile = () => (
             Pay Now
           </Button>
           <Button style={{ marginRight: '20px', }}>
-            Pay At Home
+            Pay Online
+          </Button>
+          <Button style={{ marginRight: '20px', }}>
+            Pay by Check
           </Button>
           <Button style={{ margin: 'auto', }}>
             Finance
           </Button>
         </div>
       </div>
+      
+      <Divider />
+
+      <div>
+        <span style={{
+          fontFamily: 'Roboto, sans-serif', fontSize: '18px', fontWeight: '300',
+          lineHeight: '30px', letterSpacing: '0.02em', textAlign: 'left',
+          backgroundColor: 'white', paddingTop: '20px', paddingBottom: '10px',
+        }}>
+          Submit</span>
+      </div>
+
+      <div style={{ textAlign: 'center', }}>
+
+        <Form
+          name="wrap"
+          labelCol={{ flex: '200px' }}
+          labelAlign="right"
+          labelWrap
+          wrapperCol={{ flex: 1 }}
+          colon={false}
+          style={{ maxWidth: 600 }}
+        >
+          <Form.Item label="Deal ID: " name="deal_id" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+
+          <Form.Item label="Design Studio Link: " name="design_studio_link" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+
+          <Form.Item label=" ">
+            <Button type="primary" htmlType="confirm" style={{ marginTop: '15px', }}>
+              Confirm
+            </Button>
+
+            <div style={{ float: 'right',  marginTop: '18px', }}>
+              <span style={{ marginRight: '10px', }}>Auto Submit</span>
+              <Switch defaultChecked onChange={(checked) => {
+                console.log(`switch to ${checked}`);
+              }} />
+            </div>
+
+          </Form.Item>
+        </Form>
+
+
+
+      </div>
+
     </div>
+
+
   </div>
 
 );
